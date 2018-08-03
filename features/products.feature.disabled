@@ -1,0 +1,12 @@
+Feature: Products
+  In order to check if products are working
+  As a developer
+  I need to check functionality
+
+  Background:
+    Given a global administrator named 'Admin'
+    And a user named 'NormalUser'
+
+  Scenario: Create a product
+    Given I am logged in as 'Admin'
+    When I create a product named 'Test product' 

@@ -1,0 +1,6 @@
+suites:
+    main_suite:
+        spec_path: tests
+        src_path: app
+        namespace: App
+        psr4_prefix: App
