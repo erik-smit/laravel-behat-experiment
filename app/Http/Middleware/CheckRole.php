@@ -13,21 +13,15 @@ class CheckRole{
 	 * @param  \Closure  $next
 	 * @return mixed
 	 */
-	public function handle($request, Closure $next)
+	public function handle($request, Closure $next, $role)
 	{
-        // Get the required roles from the route
-        
-        $roles = $this->getRequiredRoleForRoute($request->route());
-        
-		// Check if a role is required for the route, and
-		// if so, ensure that the user has that role.
+		[ $method, $role ] = explode(":", $role);
 
-        dd($roles);
-        
-        if(is_array($roles) && $request->user()->hasRole($roles))
-		{
+		if(!$request->isMethod($method) ||
+			$request->user()->hasRole($role)) {
+			//dd("request not is method or is allowed");
 			return $next($request);
-        }
+		}
         
 		return response([
 			'error' => [
@@ -36,10 +30,4 @@ class CheckRole{
 			]
 		], 401);
     }
-    
-	private function getRequiredRoleForRoute($route)
-	{
-		$actions = $route->getAction();
-		return isset($actions['roles']) ? $actions['roles'] : null;
-	}
 }

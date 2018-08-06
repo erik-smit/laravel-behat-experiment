@@ -27,12 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function hasRole($roles)
+    public function hasRole($role)
     {
-        foreach ($roles as $role) {
-            if ($this->role == $role) {
-                return true;
-            }
+        if ($this->role == $role) {
+            return true;
         }
     }
 }
