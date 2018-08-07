@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                 <form method="POST" action="{{ route('user-destroy', [ 'id' => $user->id ]) }}" aria-label="{{ __('Destroy') }}">
-                        <input type="hidden" name="_method" value="DELETE">
+                        @method('DELETE')
                         @csrf
 
                         <div class="form-group row mb-0">

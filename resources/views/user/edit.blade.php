@@ -9,7 +9,7 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('user-patch', [ 'id' => $user->id ]) }}" aria-label="{{ __('Register') }}">
-                        <input type="hidden" name="_method" value="PATCH">
+                        @method('PATCH')
                         @csrf
 
                         <div class="form-group row">
