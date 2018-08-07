@@ -21,7 +21,8 @@ Feature: Users
   Scenario: Admin can create user
     Given I sign in with 'admin@example.com' '123456' successfully
     When I am on "/user"
-    When I press "Create new user"
+    Then the response should not contain "behattest"
+    When I follow "Create new user"
     Then I should be on "/user/create"
     When I fill in "name" with "behattest"
     And I fill in "email" with "behat@example.com"
@@ -35,12 +36,13 @@ Feature: Users
   Scenario: Admin can delete user
     Given I sign in with 'admin@example.com' '123456' successfully
     When I am on "/user"
+    Then the response should contain "behattest"
     When I follow "behattest"
-    When I press "Delete user"
+    When I follow "Delete user"
     Then the response should contain "Are you sure"
     When I press "Delete user"
     Then I should be on "/user"
-    And the response should not contain "behat@example.com"
+    And the response should not contain "behattest"
 
 
   

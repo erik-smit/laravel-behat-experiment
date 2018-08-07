@@ -99,36 +99,4 @@ class FeatureContext extends MinkContext implements Context
         $this->iSignIn($email, $password);
         $this->assertPageAddress("/home");
     }
-
-   /**
-     * @Given I am logged in as :arg1
-     */
-    public function iAmLoggedInAs($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @When I create a user named :arg1
-     */
-    public function iCreateAUserNamed($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then a :arg1 was created
-     */
-    public function aWasCreated($arg1)
-    {
-        throw new PendingException();
-    }
-
-    /**
-     * @Then no :arg1 was created
-     */
-    public function noWasCreated($arg1)
-    {
-        throw new PendingException();
-    }
 }

@@ -8,17 +8,7 @@
                 <div class="card-header">New user</div>
 
                 <div class="card-body">
-                    <form method="GET" action="{{ route('user-create') }}" aria-label="{{ __('Create new user') }}">
-                        @csrf
-                        
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Create new user') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <a href="{{ route('user-create') }}" class="btn btn-primary">Create new user</a>
                 </div>
             </div>
 
@@ -33,7 +23,7 @@
                     @endif
                     <ul class="list-group">
                     @foreach ($users as $user)
-                        <li class="list-group-item"><a href="/user/{{ $user->id }}">{{ $user->name }}</a></li>
+                        <li class="list-group-item"><a href="{{ route('user-show', [ 'id' => $user->id ]) }}">{{ $user->name }}</a></li>
                     @endforeach
                     </ul>
                 </div>

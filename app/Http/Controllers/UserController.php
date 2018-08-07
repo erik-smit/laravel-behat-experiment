@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('user/show', compact('user'));
     }
 
     /**
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('user/edit', compact('user'));
     }
 
     /**
@@ -88,9 +88,20 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        return redirect(route('user-show', [ 'id' => $user->id]));
+    }
+
+    /**
+     * Show the form for deleting the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(User $user)
+    {
+        return view('user/delete', compact('user'));
     }
 
     /**
@@ -101,6 +112,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect(route('user'));
     }
 }
