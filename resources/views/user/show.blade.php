@@ -8,13 +8,13 @@
                 <div class="card-header">User</div>
 
                 <div class="card-body">
-                    <dl class="dl-horizontal">
-                        <dt>Name</dt>
-                        <dd>{{ $user->name }}</dd>
-                        <dt>E-mail</dt>
-                        <dd>{{ $user->email }}</dd>
-                        <dt>Role</dt>
-                        <dd>{{ $user->role }}</dd>
+                    <dl class="row">
+                        <dt class="col-sm-2">Name</dt>
+                        <dd class="col-sm-10">{{ $user->name }}</dd>
+                        <dt class="col-sm-2">E-mail</dt>
+                        <dd class="col-sm-10">{{ $user->email }}</dd>
+                        <dt class="col-sm-2">Role</dt>
+                        <dd class="col-sm-10">{{ $user->role }}</dd>
                     </dl>
 
                     <a href="{{ route('user-edit', [ 'id' => $user->id ]) }}" class="btn btn-primary">Edit user</a>
