@@ -19,7 +19,6 @@ class CheckRole{
 
 		if(!$request->isMethod($method) ||
 			$request->user()->hasRole($role)) {
-			//dd("request not is method or is allowed");
 			return $next($request);
 		}
         

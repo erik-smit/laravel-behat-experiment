@@ -7,14 +7,22 @@ use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use PHPUnit\Framework\Assert as PHPUnit;
 use App\User;
-use Laracasts\Behat\Context\Migrator;
+use Laracasts\Behat\Context\MigrateRefresh;
 
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext extends MinkContext implements Context
 {
-    use Migrator;
+    /**
+     * Migrate the database before this suite
+     *
+     * @BeforeSuite
+     */
+    public static function prepare()
+    {
+        Artisan::call('migrate:refresh');
+    }
 
     /**
      * Initializes context.
@@ -61,14 +69,14 @@ class FeatureContext extends MinkContext implements Context
     {
         $users = $table->getHash();
         foreach ($users as $user) {
-            if (App\User::where('email', $user['email']))
+            if (App\User::where('email', $user['email'])->count())
                 continue;
-            App\User::create([
+            $user = App\User::create([
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'role' => $user['role'],
                 'password' => bcrypt($user['password'])
-            ]);            
+            ]);
         }
     }
 
