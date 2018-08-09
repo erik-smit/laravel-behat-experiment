@@ -24,11 +24,16 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        if ($request->user()->hasRole('admin'))
+        {
+            $users = User::all();
 
-        return view('user/index', compact('users'));
+            return view('user/index', compact('users'));
+        } else {
+            return redirect(route('user-show', [ 'id' => $request->user()->id ]));
+        }
     }
 
     /**
@@ -90,7 +95,11 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        return redirect(route('user-show', [ 'id' => $user->id]));
+        $user->name = $request['name'];
+        $user->role = $request['role'];
+        $user->save();
+        
+        return redirect(route('user-show', [ 'id' => $user->id ]));
     }
 
     /**

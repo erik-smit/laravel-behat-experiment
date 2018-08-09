@@ -23,11 +23,17 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $validate = [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
             'role' => 'required',
-            'password' => 'required|string|min:6|confirmed',
         ];
+        
+        # email and password are only required on creation
+        if ($this->isMethod("POST"))
+        {
+            $validate['email'] = 'required|string|email|max:255|unique:users';
+            $validate['password'] = 'required|string|min:6|confirmed';
+        }
+        return $validate;
     }
 }

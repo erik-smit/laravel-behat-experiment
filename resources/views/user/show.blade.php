@@ -10,11 +10,11 @@
                 <div class="card-body">
                     <dl class="row">
                         <dt class="col-sm-2">Name</dt>
-                        <dd class="col-sm-10">{{ $user->name }}</dd>
+                        <dd class="col-sm-10" id="namefield">{{ $user->name }}</dd>
                         <dt class="col-sm-2">E-mail</dt>
-                        <dd class="col-sm-10">{{ $user->email }}</dd>
+                        <dd class="col-sm-10" id="emailfield">{{ $user->email }}</dd>
                         <dt class="col-sm-2">Role</dt>
-                        <dd class="col-sm-10">{{ $user->role }}</dd>
+                        <dd class="col-sm-10" id="rolefield">{{ $user->role }}</dd>
                     </dl>
 
                     <a href="{{ route('user-edit', [ 'id' => $user->id ]) }}" class="btn btn-primary">Edit user</a>
