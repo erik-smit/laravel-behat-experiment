@@ -9,7 +9,7 @@ Feature: Customers
     | admin       | admin@example.com       | 123456   | admin |
     | useraccount | user@example.com        | 234567   | user  |
 
-  Scenario: User can create customers
+  Scenario outline: User can create customers
     Given I sign in with 'user@example.com' '234567' successfully
     When I am on "/customer"
     Then I should not see "behatcompany"
