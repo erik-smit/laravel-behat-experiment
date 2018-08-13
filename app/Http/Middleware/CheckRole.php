@@ -15,10 +15,10 @@ class CheckRole{
 	 */
 	public function handle($request, Closure $next, $role)
 	{
-		[ $method, $role ] = explode(":", $role);
+		list($method, $role) = explode(":", "$role:");
 
-		if(!$request->isMethod($method) ||
-			$request->user()->hasRole($role)) {
+		if($role && (!$request->isMethod($method) || $request->user()->hasRole($role)) ||
+			$request->user()->hasRole($method)) {
 			return $next($request);
 		}
         

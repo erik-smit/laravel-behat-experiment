@@ -1,7 +1,7 @@
 Feature: Users
-  In order to check correct permissions
-  As a visitor
-  I should be able to visit some pages but not others
+  In order to administer the website
+  As an admin
+  I should be able to manage users
 
   Background:
     Given there are users:
@@ -25,11 +25,12 @@ Feature: Users
     Then I should not see "behattest"
     When I follow "Create new user"
     Then I should be on "/user/create"
-    When I fill in "name" with "behattest"
-    And I fill in "email" with "behat@example.com"
-    And I fill in "role" with "user"
-    And I fill in "password" with "1234abcd"
-    And I fill in "password-confirm" with "1234abcd"
+    When I fill in the following:
+      | name             | behattest         |
+      | email            | behat@example.com |
+      | role             | user              |
+      | password         | 1234abcd          |
+      | password-confirm | 1234abcd          |
     And I press "Create user"
     Then I should be on "/user"
     And I should see "behattest"
@@ -62,6 +63,4 @@ Feature: Users
   Scenario: User can not view userlist
     Given I sign in with 'user@example.com' '234567' successfully
     When I am on "/user"
-    Then I should not see "testaccount"
-
-  Scenario 
+    Then the response should not contain "testaccount"

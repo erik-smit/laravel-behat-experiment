@@ -41,3 +41,18 @@ Route::get('/user/{user}/edit', 'UserController@edit')->name('user-edit');
 Route::patch('/user/{user}', 'UserController@update')->name('user-patch');
 Route::get('/user/{user}/delete', 'UserController@delete')->name('user-delete');
 Route::delete('/user/{user}', 'UserController@destroy')->name('user-destroy');
+
+// Customer
+Route::get('/customer', 'CustomerController@index')->name('customer');
+Route::get('/customer/create', 'CustomerController@create')->name('customer-create');
+Route::post('/customer', 'CustomerController@store');
+Route::get('/customer/{customer}', 'CustomerController@show')->name('customer-show');
+Route::get('/customer/{customer}/edit', 'CustomerController@edit')->name('customer-edit');
+Route::patch('/customer/{customer}', 'CustomerController@update')->name('customer-patch');
+Route::get('/customer/{customer}/delete', 'CustomerController@delete')->name('customer-delete');
+Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('customer-destroy');
+
+// Password
+Route::get('/password', 'PasswordController@index')->name('password');
+Route::get('/password/edit', 'PasswordController@edit')->name('password-edit');
+Route::patch('/password', 'PasswordController@update')->name('password-patch');
