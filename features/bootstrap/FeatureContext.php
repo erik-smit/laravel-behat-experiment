@@ -25,44 +25,6 @@ class FeatureContext extends MinkContext implements Context
     }
 
     /**
-     * Initializes context.
-     *
-     * Every scenario gets its own context instance.
-     * You can also pass arbitrary arguments to the
-     * context constructor through behat.yml.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
-     * @Then I can do something with Laravel
-     */
-    public function iCanDoSomethingWithLaravel()
-    {
-        PHPUnit::assertEquals('.env.behat', app()->environmentFile());
-        PHPUnit::assertEquals('acceptance', env('APP_ENV'));
-        PHPUnit::assertTrue(config('app.debug'));
-    }
-
-    /**
-     * @Given the method :arg1 receives the numbers :arg2 and :arg3
-     */
-    public function theMethodReceivesTheNumbersAnd($arg1, $arg2, $arg3)
-    {
-        $this->calculator = new Calculator();
-        $this->calculator->$arg1($arg2, $arg3);
-    }
-
-    /**
-     * @Then the calculated value should be :arg1
-     */
-    public function theCalculatedValueShouldBe($arg1)
-    {
-        PHPUnit::assertEquals($arg1, $this->calculator->result());
-    }
-
-    /**
      * @Given there are users:
      */
     public function thereAreUsers(TableNode $table)
@@ -76,6 +38,26 @@ class FeatureContext extends MinkContext implements Context
                 'email' => $user['email'],
                 'role' => $user['role'],
                 'password' => bcrypt($user['password'])
+            ]);
+        }
+    }
+
+    /**
+     * @Given there are customers:
+     */
+    public function thereAreCustomers(TableNode $table)
+    {
+        $customers = $table->getHash();
+        foreach ($customers as $customer) {
+            if (App\User::where('companyname', $customer['companyname'])->count())
+                continue;
+            $customer = App\Customer::create([
+                'companyname' => $customer['companyname'],
+                'contactname' => $customer['contactname'],
+                'contactmail' => $customer['contactmail'],
+                'address' => $customer['address'],
+                'country' => $customer['country'],
+                'memo' => $customer['memo']
             ]);
         }
     }

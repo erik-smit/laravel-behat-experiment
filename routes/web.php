@@ -52,6 +52,16 @@ Route::patch('/customer/{customer}', 'CustomerController@update')->name('custome
 Route::get('/customer/{customer}/delete', 'CustomerController@delete')->name('customer-delete');
 Route::delete('/customer/{customer}', 'CustomerController@destroy')->name('customer-destroy');
 
+// InvoiceOrder
+Route::get('/invoiceorder', 'InvoiceOrderController@index')->name('invoiceorder');
+Route::get('/invoiceorder/create', 'InvoiceOrderController@create')->name('invoiceorder-create');
+Route::post('/invoiceorder', 'InvoiceOrderController@store');
+Route::get('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@show')->name('invoiceorder-show');
+Route::get('/invoiceorder/{invoiceOrder}/edit', 'InvoiceOrderController@edit')->name('invoiceorder-edit');
+Route::patch('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@update')->name('invoiceorder-patch');
+Route::get('/invoiceorder/{invoiceOrder}/delete', 'InvoiceOrderController@delete')->name('invoiceorder-delete');
+Route::delete('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@destroy')->name('invoiceorder-destroy');
+
 // Password
 Route::get('/password', 'PasswordController@index')->name('password');
 Route::get('/password/edit', 'PasswordController@edit')->name('password-edit');
