@@ -21,8 +21,16 @@
                         @endforeach
                     </dl>
 
-                    <a href="{{ route('invoiceorder-edit', [ 'id' => $invoiceOrder->id ]) }}" class="btn btn-primary">Edit invoice order</a>
-                    <a href="{{ route('invoiceorder-delete', [ 'id' => $invoiceOrder->id ]) }}" class="btn btn-primary">Delete invoice order</a>
+                    <a href="{{ route('invoiceorder-edit', [ 'invoiceOrder' => $invoiceOrder->id ]) }}" class="btn btn-primary">Edit invoice order</a>
+                    <form id="invoiceorder-process-form" action="{{ route('invoiceorder-process') }}" method="POST">
+                        <button type="submit" class="btn btn-primary">
+                                    {{ __('Process invoice order') }}
+                        </button>
+                        <input type="hidden" name="invoiceOrder" value="{{ $invoiceOrder->id }}"/>
+                        @csrf
+                    </form>
+
+                    <a href="{{ route('invoiceorder-delete', [ 'invoiceOrder' => $invoiceOrder->id ]) }}" class="btn btn-primary">Delete invoice order</a>
 
                 </div>
             </div>

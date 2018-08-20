@@ -46,6 +46,9 @@
                         <li class="nav-item{{ Request::is('invoiceorder', 'invoiceorder/*') ? ' active' : '' }}">
                             <a class="nav-link" href="{{ route('invoiceorder') }}">Invoice Orders</a>
                         </li>
+                        <li class="nav-item{{ Request::is('invoice', 'invoice/*') ? ' active' : '' }}">
+                            <a class="nav-link" href="{{ route('invoice') }}">Invoices</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

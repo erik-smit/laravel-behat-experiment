@@ -127,6 +127,18 @@ class InvoiceOrderController extends Controller
     }
 
     /**
+     * Process Invoice Order into Invoice
+     */
+    public function process(Request $request)
+    {
+        $invoiceOrder = InvoiceOrder::find($request['invoiceOrder']);
+        $invoice = $invoiceOrder->processOrder();
+
+        return redirect(route('invoice-show', [ 'invoice' => $invoice->id ]));
+    }
+
+
+    /**
      * Show the form for deleting the specified resource.
      */
     public function delete(InvoiceOrder $invoiceOrder)

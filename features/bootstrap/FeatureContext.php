@@ -17,7 +17,7 @@ class FeatureContext extends MinkContext implements Context
     /**
      * Migrate the database before this suite
      *
-     * @BeforeSuite
+     * @BeforeFeature
      */
     public static function prepare()
     {
@@ -31,11 +31,10 @@ class FeatureContext extends MinkContext implements Context
     {
         $users = $table->getHash();
         foreach ($users as $user) {
-            if (App\User::where('email', $user['email'])->count())
-                continue;
-            $user = App\User::create([
+            $user = App\User::firstOrCreate([
+                'email' => $user['email']
+                ], [
                 'name' => $user['name'],
-                'email' => $user['email'],
                 'role' => $user['role'],
                 'password' => bcrypt($user['password'])
             ]);
@@ -49,10 +48,9 @@ class FeatureContext extends MinkContext implements Context
     {
         $customers = $table->getHash();
         foreach ($customers as $customer) {
-            if (App\User::where('companyname', $customer['companyname'])->count())
-                continue;
-            $customer = App\Customer::create([
-                'companyname' => $customer['companyname'],
+            $customer = App\Customer::firstOrCreate([
+                'companyname' => $customer['companyname']
+                ], [
                 'contactname' => $customer['contactname'],
                 'contactmail' => $customer['contactmail'],
                 'address' => $customer['address'],

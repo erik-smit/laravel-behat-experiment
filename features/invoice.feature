@@ -14,7 +14,7 @@ Feature: Invoice
     | 1stcompany  | 1stcontact  | 1st@example.com  | newaddress | NL      | memo | 
     | 2ndcompany  | 2ndcontact  | 2nd@example.com  | newaddress | NL      | memo | 
 
-  Scenario: User can create invoice orders
+  Scenario: User can create invoice order
     Given I sign in with 'user@example.com' '234567' successfully
     When I am on "/invoiceorder"
     When I follow "Create new invoice order"
@@ -25,7 +25,7 @@ Feature: Invoice
     | number[]  | 10          |
     | price[]   | 123         |
     And I press "Create invoice order"
-    And I should see "1stproduct"
+    Then I should see "1stproduct"
     And I should see "1stcompany"
 
   Scenario: User can modify invoice order
@@ -54,3 +54,19 @@ Feature: Invoice
     Then I should be on "/invoiceorder"
     And I should not see "1"
 
+  Scenario: User can create invoice order to process into invoice
+    Given I sign in with 'user@example.com' '234567' successfully
+    When I am on "/invoiceorder"
+    When I follow "Create new invoice order"
+    Then I should be on "/invoiceorder/create"
+    When I fill in the following:
+    | customer  | 2           |
+    | product[] | 2ndproduct  |
+    | number[]  | 10          |
+    | price[]   | 123         |
+    And I press "Create invoice order"
+    Then I should see "2ndproduct"
+    And I should see "2ndcompany"
+    Then I press "Process invoice order"
+    Then I should see "2ndproduct"
+    And I should see "2ndcompany"

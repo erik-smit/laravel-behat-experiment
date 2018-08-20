@@ -59,8 +59,14 @@ Route::post('/invoiceorder', 'InvoiceOrderController@store');
 Route::get('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@show')->name('invoiceorder-show');
 Route::get('/invoiceorder/{invoiceOrder}/edit', 'InvoiceOrderController@edit')->name('invoiceorder-edit');
 Route::patch('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@update')->name('invoiceorder-patch');
+Route::post('/invoiceorder/process', 'InvoiceOrderController@process')->name('invoiceorder-process');
 Route::get('/invoiceorder/{invoiceOrder}/delete', 'InvoiceOrderController@delete')->name('invoiceorder-delete');
 Route::delete('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@destroy')->name('invoiceorder-destroy');
+
+// Invoice
+Route::get('/invoice', 'InvoiceController@index')->name('invoice');
+Route::get('/invoice/{invoice}', 'InvoiceController@show')->name('invoice-show');
+
 
 // Password
 Route::get('/password', 'PasswordController@index')->name('password');
