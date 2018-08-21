@@ -66,7 +66,7 @@ Route::delete('/invoiceorder/{invoiceOrder}', 'InvoiceOrderController@destroy')-
 // Invoice
 Route::get('/invoice', 'InvoiceController@index')->name('invoice');
 Route::get('/invoice/{invoice}', 'InvoiceController@show')->name('invoice-show');
-
+Route::get('/invoice/{invoice}/pdf', 'InvoiceController@showPDF')->name('invoice-showPDF');
 
 // Password
 Route::get('/password', 'PasswordController@index')->name('password');

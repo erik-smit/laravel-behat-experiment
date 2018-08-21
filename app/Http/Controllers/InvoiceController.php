@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use PDF;
 
 class InvoiceController extends Controller
 {
@@ -29,7 +31,6 @@ class InvoiceController extends Controller
         return view('invoice/index', compact('invoices'));
     }
 
-
     /**
      * Display the specified resource.
      *
@@ -39,5 +40,11 @@ class InvoiceController extends Controller
     public function show(Invoice $invoice)
     {
         return view('invoice/show', compact('invoice'));
+    }
+
+    public function showPDF(Invoice $invoice)
+    {
+        $pdf = PDF::loadView('invoice/showPDF', compact('invoice'));
+        return $pdf->stream("invoice.pdf");
     }
 }
