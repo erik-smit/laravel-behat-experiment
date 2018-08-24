@@ -61,4 +61,5 @@ Feature: Customers
     When I press "Delete customer"
     Then I should be on "/customer"
     And I should not see "newcompany"
+    And the response status code should be 200
 

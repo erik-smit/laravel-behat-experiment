@@ -45,6 +45,7 @@ Feature: Users
     When I press "Delete user"
     Then I should be on "/user"
     And I should not see "behattest"
+    And the response status code should be 200
 
   Scenario: Admin can view and edit user
     Given I sign in with 'admin@example.com' '123456' successfully
@@ -64,3 +65,4 @@ Feature: Users
     Given I sign in with 'user@example.com' '234567' successfully
     When I am on "/user"
     Then the response should not contain "testaccount"
+    And the response status code should be 200

@@ -67,6 +67,8 @@ Feature: Invoice
     And I press "Create invoice order"
     Then I should see "2ndproduct"
     And I should see "2ndcompany"
-    Then I press "Process invoice order"
+    When I press "Process invoice order"
     Then I should see "2ndproduct"
     And I should see "2ndcompany"
+    When I follow "Download invoice as PDF"
+    Then the response status code should be 200
