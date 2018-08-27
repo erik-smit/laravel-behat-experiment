@@ -65,4 +65,4 @@ Feature: Users
     Given I sign in with 'user@example.com' '234567' successfully
     When I am on "/user"
     Then the response should not contain "testaccount"
-    And the response status code should be 200
+    And the response status code should be 401
